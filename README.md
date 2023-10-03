@@ -25,3 +25,8 @@ rainbow_crosshair_disable
 
 ## WARNING
 - `-dev` launch option causes console spam
+
+<br/>
+
+## GIF
+![cs2-rainbow-crosshair](https://github.com/T1ckbase/cs2-rainbow-crosshair/assets/146760065/658b2ef6-32b3-4569-98bb-318aa6348b85)
