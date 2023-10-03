@@ -16,7 +16,10 @@ bind "mouse_x" "T1ckbaseRainbow; yaw"; bind "mouse_y" "T1ckbaseRainbow; pitch"
 ```
 <br/>
 
-- Use `rainbow_crosshair_disable` to disable rainbow crosshair
+- Use this command to disable rainbow crosshair
+```
+rainbow_crosshair_disable
+```
 
 <br/>
 
