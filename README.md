@@ -29,4 +29,4 @@ rainbow_crosshair_disable
 <br/>
 
 ## GIF
-![cs2-rainbow-crosshair](https://images.t1ckbase.repl.co/cs2-rainbow-crosshair.gif)
+![cs2-rainbow-crosshair](https://github.com/T1ckbase/cs2-rainbow-crosshair/assets/146760065/6a01bc8a-d4c8-48ad-b6ed-f93c4a2c1b64)
