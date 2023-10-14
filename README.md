@@ -12,13 +12,17 @@ exec t1ckbase_rainbow_crosshair
 ```
 3. Open the game and type this command in the console to enable rainbow crosshair
 ```
-bind "mouse_x" "T1ckbaseRainbow; yaw"; bind "mouse_y" "T1ckbaseRainbow; pitch"
+t1ckbase_rainbow_crosshair_enable
 ```
 <br/>
 
-- Use this command to disable rainbow crosshair
+- Toggle rainbow crosshair
 ```
-rainbow_crosshair_disable
+t1ckbase_rainbow_crosshair_toggle
+```
+- Disable rainbow crosshair
+```
+t1ckbase_rainbow_crosshair_disable
 ```
 
 <br/>
