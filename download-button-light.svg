@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <foreignObject xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <style>
+      :root {
+        background: #0000;
+      }
+
+      .fancy-border {
+        --border-size: 1px;
+        pointer-events: none;
+        position: absolute;
+        inset: calc(0px - var(--border-size));
+        padding: var(--border-size);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        border-radius: inherit;
+        overflow: hidden;
+      }
+
+      .fancy-border::after { 
+        content: '';
+        background: radial-gradient(100% 100% at right, #8957e5, transparent 50%);
+        position: absolute;
+        aspect-ratio: 2 / 1;
+        transform: translate(-50%, -50%);
+        aspect-ratio: 1;
+        width: 60%;
+        offset-path: border-box;
+        offset-anchor: 50% 0%;
+      }
+
+      .fancy-border::after {
+        animation: journey 16s -10s infinite linear;
+      }
+
+      @keyframes journey {
+        to {
+          offset-distance: 100%;
+        }
+      }
+
+      .download-button {
+        position: absolute;
+        inset: 1px;
+        background: #f6f8fa;
+        color: #25292e;
+        border: 1px solid #d1d9e0;
+        border-radius: 6px;
+      }
+
+      .download {
+        font-size: calc(16vw);
+        font-family: "Cascadia Mono", -apple-system, "BlinkMacSystemFont", "Trebuchet MS", Roboto, Ubuntu, sans-serif;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <div class="download-button">
+        <div class="fancy-border"></div>
+        <div class="download">Download</div>
+      </div>
+    </body>
+  </foreignObject>
+</svg>

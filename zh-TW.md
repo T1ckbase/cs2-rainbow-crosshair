@@ -21,7 +21,12 @@
 - **可調整速度**
 
 ## 下載
-...
+<a href="https://github.com/T1ckbase/cs2-rainbow-crosshair/releases/latest">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/T1ckbase/cs2-rainbow-crosshair/refs/heads/main/download-button-dark.svg">
+    <img src="https://raw.githubusercontent.com/T1ckbase/cs2-rainbow-crosshair/refs/heads/main/download-button-light.svg" alt="下載" width="108" height="32">
+  </picture>
+</a>
 
 [id1]: ## "Counter-Strike Global Offensive/game/csgo/cfg/autoexec.cfg"
 ## 使用方式
