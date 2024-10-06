@@ -37,6 +37,14 @@
         transform: translate(-50%, -50%);
       }
 
+      @supports not (color: oklch(0.75 0.1275 180)) {
+        .ball::after {
+          content: 'Browser does not support';
+          color: red;
+          font-size: 1rem;
+        }
+      }
+
       @keyframes hue {
         to { --hue: 359; }
       }
