@@ -1,4 +1,3 @@
-[](#readme)
 <div id="toc">
   <ul align="center" style="list-style: none">
     <summary>
@@ -13,21 +12,21 @@
   ·
   <a href="https://github.com/T1ckbase/cs2-rainbow-crosshair/blob/main/zh-TW.md">中文</a>
   &nbsp;|&nbsp;
-  <a href="https://github.com/T1ckbase/cs2-rainbow-crosshair/blob/main/v1.1.0.md">v1.1 Documentation</a>
+  <a href="https://github.com/T1ckbase/cs2-rainbow-crosshair/blob/main/v1.1.0.md">v1.1 文檔</a>
 </p>
 
-## Features
-- **Changes color based on mouse movement**
-- **360 colors**
-- **Adjustable speed**
+## 功能
+- **基於滑鼠移動改變顏色**
+- **360個顏色**
+- **可調整速度**
 
-## Download
+## 下載
 ...
 
 [id1]: ## "Counter-Strike Global Offensive/game/csgo/cfg/autoexec.cfg"
-## Usage
-1. Place the unzipped folder into :file_folder:`Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg`
-2. Add the following commands to your [autoexec.cfg][id1]
+## 使用方式
+1. 將解壓縮後的資料夾放到 :file_folder:`Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg`
+2. 添加以下指令到你的 [autoexec.cfg][id1]
 ```
 exec t1ckbase_rainbow_crosshair/init
 
@@ -39,28 +38,28 @@ rainbow_crosshair_enable
 // rainbow_crosshair_toggle
 ```
 
-## Aliases
-- Enable rainbow crosshair
+## 指令
+- 打開彩虹準星
 ```
 rainbow_crosshair_enable
 ```
-- Disable rainbow crosshair
+- 關閉彩虹準星
 ```
 rainbow_crosshair_disable
 ```
-- Toggle rainbow crosshair
+- 開關彩虹準星
 ```
 rainbow_crosshair_toggle
 ```
-- Adjust speed `(1 ~ 30)`
+- 調整速度 `(1 ~ 30)`
 ```
-rainbow_crosshair_speed_21
+rainbow_crosshair_speed_10
 ```
 
-## Color palette preview
+## 顏色預覽
 <img src="https://raw.githubusercontent.com/T1ckbase/cs2-rainbow-crosshair/refs/heads/main/rainbow.svg" width="80px" height="80px">
 
 <br/>
 
-## Old GIF
+## 舊的GIF
 ![cs2-rainbow-crosshair](https://github.com/T1ckbase/cs2-rainbow-crosshair/assets/146760065/6a01bc8a-d4c8-48ad-b6ed-f93c4a2c1b64)
