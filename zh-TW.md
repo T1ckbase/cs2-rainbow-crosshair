@@ -82,8 +82,10 @@ rainbow_crosshair_speed_10
 
 ## 配色預覽
 
-<img src="./assets/oklch.svg" width="90px" height="90px">
-<img src="./assets/hsl.svg" width="90px" height="90px">
+<div>
+  <img src="./assets/oklch.svg" width="90px" height="90px" alt="oklch">
+  <img src="./assets/hsl.svg" width="90px" height="90px" alt="hsl">
+</div>
 
 <br/>
 
