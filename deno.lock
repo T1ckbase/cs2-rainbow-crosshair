@@ -1,0 +1,36 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/fs@^1.0.17": "1.0.17",
+    "jsr:@std/path@^1.0.9": "1.0.9",
+    "npm:@types/culori@4": "4.0.0",
+    "npm:culori@^4.0.1": "4.0.1"
+  },
+  "jsr": {
+    "@std/fs@1.0.17": {
+      "integrity": "1c00c632677c1158988ef7a004cb16137f870aafdb8163b9dce86ec652f3952b",
+      "dependencies": [
+        "jsr:@std/path"
+      ]
+    },
+    "@std/path@1.0.9": {
+      "integrity": "260a49f11edd3db93dd38350bf9cd1b4d1366afa98e81b86167b4e3dd750129e"
+    }
+  },
+  "npm": {
+    "@types/culori@4.0.0": {
+      "integrity": "sha512-aFljQwjb++sl6TAyEXeHTiK/fk9epZOQ+nMmadjnAvzZFIvNoQ0x8XQYfcOaRTBwmDUPUlghhZCJ66MTcqQAsg=="
+    },
+    "culori@4.0.1": {
+      "integrity": "sha512-LSnjA6HuIUOlkfKVbzi2OlToZE8OjFi667JWN9qNymXVXzGDmvuP60SSgC+e92sd7B7158f7Fy3Mb6rXS5EDPw=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/fs@^1.0.17",
+      "jsr:@std/path@^1.0.9",
+      "npm:@types/culori@4",
+      "npm:culori@^4.0.1"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "tasks": {
+    "build": "deno --allow-read --allow-write=./ build.ts"
+  },
+  "imports": {
+    "@std/fs": "jsr:@std/fs@^1.0.17",
+    "@std/path": "jsr:@std/path@^1.0.9",
+    "@types/culori": "npm:@types/culori@^4.0.0",
+    "culori": "npm:culori@^4.0.1"
+  },
+  "fmt": {
+    "indentWidth": 2,
+    "lineWidth": 160,
+    "proseWrap": "preserve",
+    "semiColons": true,
+    "singleQuote": true,
+    "useTabs": false
+  }
+}

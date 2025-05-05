@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <foreignObject xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <style>
+      @property --hue {
+        syntax: "&lt;integer&gt;";
+        initial-value: 0;
+        inherits: false;
+      }
+
+      :root {
+        --hue: 0;
+        background-color: #0000;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      .ball {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 50%;
+        background: oklch(0.75 0.1275 var(--hue));
+        counter-reset: hue var(--hue);
+        animation: hue 18s linear infinite;
+      }
+
+      .ball::after {
+        content: "oklch";
+        font-family: "Cascadia Mono", -apple-system, "BlinkMacSystemFont", "Trebuchet MS", Roboto, Ubuntu, sans-serif;
+        font-size: 20px;
+        color: rgb(255 255 255 / 0.5);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      @supports not (--hue: initial-value) {
+        .ball::after {
+          content: 'Browser does not support';
+          color: red;
+          font-size: 1rem;
+        }
+      }
+
+      @keyframes hue {
+        to { --hue: 359; }
+      }
+    </style>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <div class="ball"></div>
+    </body>
+  </foreignObject>
+</svg>

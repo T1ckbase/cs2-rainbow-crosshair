@@ -21,14 +21,14 @@
         width: 100vw;
         height: 100vh;
         border-radius: 50%;
-        background: oklch(0.75 0.1275 var(--hue));
+        background: hsl(var(--hue) 100 50);
         counter-reset: hue var(--hue);
         animation: hue 18s linear infinite;
       }
 
       .ball::after {
-        content: counter(hue);
-        font-family: "Cascadia Mono", -apple-system, "BlinkMacSystemFont", "Trebuchet MS", Roboto, Ubuntu, sans-serif;
+        content: "hsl";
+        font-family: "Cascadia Mono", -apple-system, "BlinkMacSystemFont",  "Trebuchet MS", Roboto, Ubuntu, sans-serif;
         font-size: 20px;
         color: rgb(255 255 255 / 0.5);
         position: absolute;
@@ -37,7 +37,7 @@
         transform: translate(-50%, -50%);
       }
 
-      @supports not (color: oklch(0.75 0.1275 180)) {
+      @supports not (--hue: initial-value) {
         .ball::after {
           content: 'Browser does not support';
           color: red;
