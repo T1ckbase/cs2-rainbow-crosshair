@@ -18,8 +18,8 @@
 ## Features
 
 - **Changes color based on mouse movement**
-- **Multiple color palettes**
-- **Adjustable speed**
+- **Supports multiple color palettes**
+- **Allows adjustable speed**
 
 ## Download
 
