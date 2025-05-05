@@ -23,7 +23,7 @@
 
 ## Download
 
-<a href="https://github.com/T1ckbase/cs2-rainbow-crosshair/releases/latest/download/t1ckbase_rainbow_crosshair.zip">
+<a href="https://github.com/T1ckbase/cs2-rainbow-crosshair/releases/latest/download/cfg.zip">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/download-button-dark.svg">
     <img src="./assets/download-button-light.svg" alt="Download" width="108" height="32">
