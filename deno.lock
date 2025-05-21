@@ -1,12 +1,16 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@std/collections@^1.1.0": "1.1.0",
     "jsr:@std/fs@^1.0.17": "1.0.17",
     "jsr:@std/path@^1.0.9": "1.0.9",
     "npm:@types/culori@4": "4.0.0",
     "npm:culori@^4.0.1": "4.0.1"
   },
   "jsr": {
+    "@std/collections@1.1.0": {
+      "integrity": "2ee8761c84c3d203f7a4ecd376f9ca88a0c559817a4a54c9150f28c0b948027c"
+    },
     "@std/fs@1.0.17": {
       "integrity": "1c00c632677c1158988ef7a004cb16137f870aafdb8163b9dce86ec652f3952b",
       "dependencies": [
@@ -27,6 +31,7 @@
   },
   "workspace": {
     "dependencies": [
+      "jsr:@std/collections@^1.1.0",
       "jsr:@std/fs@^1.0.17",
       "jsr:@std/path@^1.0.9",
       "npm:@types/culori@4",

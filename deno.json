@@ -3,6 +3,7 @@
     "build": "deno --allow-read --allow-write=./ build.ts"
   },
   "imports": {
+    "@std/collections": "jsr:@std/collections@^1.1.0",
     "@std/fs": "jsr:@std/fs@^1.0.17",
     "@std/path": "jsr:@std/path@^1.0.9",
     "@types/culori": "npm:@types/culori@^4.0.0",

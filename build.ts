@@ -1,3 +1,4 @@
+import { chunk } from '@std/collections';
 import * as path from '@std/path';
 import { emptyDirSync, ensureDirSync } from '@std/fs';
 // @ts-types="@types/culori"
@@ -26,14 +27,6 @@ type ColorPalette = {
   fn: (hue: number) => { r: number; g: number; b: number };
 };
 
-function chunkArray<T>(array: T[], size: number): T[][] {
-  if (size <= 0) throw new Error('Chunk size must be a positive integer');
-  return array.reduce((acc, _, i) => {
-    if (i % size === 0) acc.push(array.slice(i, i + size));
-    return acc;
-  }, [] as T[][]);
-}
-
 function buildCFG(config: Config) {
   const { color: C, nextColor: NC } = config.internalAliases;
 
@@ -48,7 +41,7 @@ function buildCFG(config: Config) {
   for (const palette of config.colorPalettes) {
     if (!palette.name) throw new Error('The color palette must have a name');
     const aliases = generateAliases(palette);
-    const chunks = chunkArray(aliases, config.aliasesPerFile);
+    const chunks = chunk(aliases, config.aliasesPerFile);
     const palettePath = path.join(config.outDir, palette.name);
     ensureDirSync(palettePath);
     emptyDirSync(palettePath);
