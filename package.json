@@ -1,0 +1,16 @@
+{
+  "name": "cs2-rainbow-crosshair",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "tsc --noEmit && bunx --bun biome check",
+    "lint:fix": "tsc --noEmit && bunx --bun biome check --write",
+    "build": "bun run build.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.14",
+    "@types/bun": "latest",
+    "typescript": "^5"
+  }
+}
