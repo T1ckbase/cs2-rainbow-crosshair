@@ -5,6 +5,7 @@ node_modules
 out
 dist
 *.tgz
+t1ckbase_rainbow_crosshair/
 
 # code coverage
 coverage
