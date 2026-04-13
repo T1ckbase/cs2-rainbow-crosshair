@@ -34,13 +34,14 @@
     "formatWithErrors": true,
     "indentStyle": "space",
     "lineEnding": "lf",
-    "lineWidth": 160
+    "lineWidth": 120
   },
   "linter": {
     "rules": {
       "recommended": true,
       "style": {
         "noNonNullAssertion": "off",
+        "noUnusedTemplateLiteral": "error",
         "useNodejsImportProtocol": "error"
       }
     }

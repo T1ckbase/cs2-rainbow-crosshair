@@ -28,7 +28,7 @@ type ColorPalette = {
   fn: (hue: number) => Bun.ColorInput;
 };
 
-// --- Configuration ---
+// Configuration
 
 const config: Config = {
   colorPalettes: [
@@ -64,7 +64,7 @@ const config: Config = {
   maxSpeed: 30,
 };
 
-// --- Build Logic ---
+// Build Logic
 
 function ensureCleanDir(dir: string) {
   if (existsSync(dir)) {
@@ -113,10 +113,18 @@ function getHudColorId(hue: number): number {
 
 async function build(config: Config) {
   const start = Bun.nanoseconds();
-  console.log(`Building to \x1b[93m${config.outDir}\x1b[0m`);
+  console.log(`Building into \x1b[93m${config.outDir}\x1b[0m`);
   ensureCleanDir(config.outDir);
 
-  const { color: C, hudColor: HC, hudSync: HS, nextColor: NC, noop: NOOP, nextSpeed: NS, padding: P } = config.internalAliases;
+  const {
+    color: C,
+    hudColor: HC,
+    hudSync: HS,
+    nextColor: NC,
+    noop: NOOP,
+    nextSpeed: NS,
+    padding: P,
+  } = config.internalAliases;
   const prefix = config.aliasPrefix;
   const outBase = path.basename(config.outDir);
   const version = (await Bun.$`git describe --tags --always --dirty`.text()).trim();
@@ -126,7 +134,7 @@ async function build(config: Config) {
   const paletteLoadCommands: string[] = [];
 
   for (const palette of config.colorPalettes) {
-    console.log(`  - Generating palette: ${palette.name} (${palette.steps} steps)`);
+    console.log(`  - Generating ${palette.name} palette (${palette.steps} steps)`);
     const paletteDir = path.join(config.outDir, palette.name);
     mkdirSync(paletteDir, { recursive: true });
 
@@ -154,9 +162,9 @@ async function build(config: Config) {
 
     // Write load.cfg for this palette
     const loadContent = [
-      `echoln "[RainbowCrosshair] Loading color palette: '${palette.name}' (${palette.steps} colors)"`,
-      '',
       ...chunks.map((_, i) => `exec ${outBase}/${palette.name}/${i}`),
+      '',
+      `echoln "[RainbowCrosshair] Loaded '${palette.name}' palette (${palette.steps} colors)"`,
     ].join('\n');
     await Bun.write(path.join(paletteDir, 'load.cfg'), loadContent);
 
@@ -168,11 +176,11 @@ async function build(config: Config) {
   await Bun.write(path.join(config.outDir, 'color_palettes.cfg'), paletteLoadCommands.join('\n'));
 
   // 3. Generate speed.cfg (Dynamic Speed Generation)
-  console.log(`  - Generating speed config (Max: ${config.maxSpeed})`);
+  console.log(`  - Generating speed config (max ${config.maxSpeed})`);
   const speedLines: string[] = [];
 
   // Padding logic: __ns (Next Speed) executes the current padding alias
-  speedLines.push(`// Padding mechanism`);
+  speedLines.push('// Padding mechanism');
   speedLines.push(`alias ${NS} ${P}`);
   speedLines.push('');
 
@@ -187,48 +195,50 @@ async function build(config: Config) {
 
   // Generate the speed selection aliases
   for (let i = 1; i <= config.maxSpeed; i++) {
-    speedLines.push(`alias ${prefix}_speed_${i} "alias ${P} __p${i}; alias ${NS} __p${i}; echoln [RainbowCrosshair] Speed set to ${i}"`);
+    speedLines.push(
+      `alias ${prefix}_speed_${i} "alias ${P} __p${i}; alias ${NS} __p${i}; echoln [RainbowCrosshair] Speed set to ${i}"`,
+    );
   }
 
   await Bun.write(path.join(config.outDir, 'speed.cfg'), speedLines.join('\n'));
 
   // 4. Generate enable.cfg
-  console.log(`  - Generating enable.cfg`);
+  console.log('  - Generating enable.cfg');
   const enableContent = [
     `bind mouse_x "${NS}; yaw"`,
     `bind mouse_y "${NS}; pitch"`,
-    `cl_crosshaircolor 5`, // Custom color mode
+    'cl_crosshaircolor 5', // Custom color mode
     '',
-    `echoln "[RainbowCrosshair] Enabled"`,
+    'echoln "[RainbowCrosshair] Enabled"',
   ].join('\n');
   await Bun.write(path.join(config.outDir, 'enable.cfg'), enableContent);
 
   // 5. Generate disable.cfg
-  console.log(`  - Generating disable.cfg`);
-  const disableContent = [`bind mouse_x yaw`, `bind mouse_y pitch`, '', `echoln "[RainbowCrosshair] Disabled"`].join('\n');
+  console.log('  - Generating disable.cfg');
+  const disableContent = ['bind mouse_x yaw', 'bind mouse_y pitch', '', `echoln "[RainbowCrosshair] Disabled"`].join(
+    '\n',
+  );
   await Bun.write(path.join(config.outDir, 'disable.cfg'), disableContent);
 
   // 6. Generate init.cfg
-  console.log(`  - Generating init.cfg`);
+  console.log('  - Generating init.cfg');
   const initContent = [
-    `// https://github.com/T1ckbase/cs2-rainbow-crosshair`,
-    '',
-    `echoln "[RainbowCrosshair] Initializing (${version})"`,
+    '// https://github.com/T1ckbase/cs2-rainbow-crosshair',
     '',
     `exec ${outBase}/color_palettes`,
     `exec ${outBase}/speed`,
     '',
-    `// Initialize next color alias`,
+    '// Initialize next color alias',
     `alias ${NC} ${C}0`,
     `alias ${NOOP} ""`,
     `alias ${HC} ${NOOP}`,
     `alias ${HS} ${NOOP}`,
     '',
-    `// Toggle Logic`,
+    '// Toggle Logic',
     `alias ${prefix}_enable "exec ${outBase}/enable; alias ${prefix}_toggle ${prefix}_toggle_disable"`,
     `alias ${prefix}_disable "exec ${outBase}/disable; alias ${prefix}_toggle ${prefix}_toggle_enable"`,
     '',
-    `// HUD Sync`,
+    '// HUD Sync',
     `alias ${prefix}_hud_sync_on "alias ${HS} ${HC}; echoln [RainbowCrosshair] HUD sync enabled"`,
     `alias ${prefix}_hud_sync_off "alias ${HS} ${NOOP}; echoln [RainbowCrosshair] HUD sync disabled"`,
     '',
@@ -236,17 +246,17 @@ async function build(config: Config) {
     `alias ${prefix}_toggle_disable "${prefix}_disable; alias ${prefix}_toggle ${prefix}_toggle_enable"`,
     `alias ${prefix}_toggle "${prefix}_toggle_enable"`,
     '',
-    `// Defaults`,
+    '// Defaults',
     `${prefix}_load_oklch`,
     `${prefix}_speed_10`,
     '',
-    `echoln "[RainbowCrosshair] Initialization Complete"`,
+    `echoln "[RainbowCrosshair] Initialized (${version})"`,
   ].join('\n');
   await Bun.write(path.join(config.outDir, 'init.cfg'), initContent);
 
   const end = Bun.nanoseconds();
   const time = (end - start) / 1000000;
-  console.log(`Build Complete! \x1b[95m(${time.toFixed(2)}ms)\x1b[0m`);
+  console.log(`Build complete \x1b[95m(${time.toFixed(2)}ms)\x1b[0m`);
 }
 
 // Run Build
