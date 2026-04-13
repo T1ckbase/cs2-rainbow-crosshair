@@ -5,7 +5,10 @@ type Config = {
   colorPalettes: ColorPalette[];
   internalAliases: {
     color: string;
+    hudColor: string;
+    hudSync: string;
     nextColor: string;
+    noop: string;
     nextSpeed: string; // Internal alias for speed chain
     padding: string; // Internal alias for padding chain
   };
@@ -48,7 +51,10 @@ const config: Config = {
   ],
   internalAliases: {
     color: '__c',
+    hudColor: '__hc',
+    hudSync: '__hud',
     nextColor: '__nc',
+    noop: '__noop',
     nextSpeed: '__ns',
     padding: '__padding',
   },
@@ -75,12 +81,42 @@ function chunk<T>(array: T[], size: number): T[][] {
   return result;
 }
 
+const HUD_HUE_ID_MAP = new Map([
+  [198, 3],
+  [216, 4],
+  [289, 5],
+  [1, 6],
+  [22, 7],
+  [60, 8],
+  [114, 9],
+  [179, 10],
+  [317, 11],
+  [45, 12],
+]);
+
+function getHudColorId(hue: number): number {
+  let nearestId = 6;
+  let nearestDistance = Number.POSITIVE_INFINITY;
+
+  for (const [mappedHue, id] of HUD_HUE_ID_MAP) {
+    const distance = Math.abs(hue - mappedHue);
+    const circularDistance = Math.min(distance, 360 - distance);
+
+    if (circularDistance < nearestDistance) {
+      nearestDistance = circularDistance;
+      nearestId = id;
+    }
+  }
+
+  return nearestId;
+}
+
 async function build(config: Config) {
   const start = Bun.nanoseconds();
   console.log(`Building to \x1b[93m${config.outDir}\x1b[0m`);
   ensureCleanDir(config.outDir);
 
-  const { color: C, nextColor: NC, nextSpeed: NS, padding: P } = config.internalAliases;
+  const { color: C, hudColor: HC, hudSync: HS, nextColor: NC, noop: NOOP, nextSpeed: NS, padding: P } = config.internalAliases;
   const prefix = config.aliasPrefix;
   const outBase = path.basename(config.outDir);
   const version = (await Bun.$`git describe --tags --always --dirty`.text()).trim();
@@ -105,17 +141,16 @@ async function build(config: Config) {
       }
 
       const [r, g, b] = parsed;
+      const hudColorId = getHudColorId(hue);
       const nextIndex = (i + 1) % palette.steps;
 
-      return `alias ${C}${i} "cl_crosshaircolor_r ${r}; cl_crosshaircolor_g ${g}; cl_crosshaircolor_b ${b};alias ${NC} ${C}${nextIndex}"`;
+      return `alias ${C}${i} "cl_crosshaircolor_r ${r}; cl_crosshaircolor_g ${g}; cl_crosshaircolor_b ${b}; alias ${HC} cl_hud_color ${hudColorId}; ${HS}; alias ${NC} ${C}${nextIndex}"`;
     });
 
     const chunks = chunk(aliases, config.aliasesPerFile);
 
     // Write palette chunks
-    await Promise.all(
-      chunks.map((lines, i) => Bun.write(path.join(paletteDir, `${i}.cfg`), lines.join('\n')))
-    );
+    await Promise.all(chunks.map((lines, i) => Bun.write(path.join(paletteDir, `${i}.cfg`), lines.join('\n'))));
 
     // Write load.cfg for this palette
     const loadContent = [
@@ -185,10 +220,17 @@ async function build(config: Config) {
     '',
     `// Initialize next color alias`,
     `alias ${NC} ${C}0`,
+    `alias ${NOOP} ""`,
+    `alias ${HC} ${NOOP}`,
+    `alias ${HS} ${NOOP}`,
     '',
     `// Toggle Logic`,
     `alias ${prefix}_enable "exec ${outBase}/enable; alias ${prefix}_toggle ${prefix}_toggle_disable"`,
     `alias ${prefix}_disable "exec ${outBase}/disable; alias ${prefix}_toggle ${prefix}_toggle_enable"`,
+    '',
+    `// HUD Sync`,
+    `alias ${prefix}_hud_sync_on "alias ${HS} ${HC}; echoln [RainbowCrosshair] HUD sync enabled"`,
+    `alias ${prefix}_hud_sync_off "alias ${HS} ${NOOP}; echoln [RainbowCrosshair] HUD sync disabled"`,
     '',
     `alias ${prefix}_toggle_enable "${prefix}_enable; alias ${prefix}_toggle ${prefix}_toggle_disable"`,
     `alias ${prefix}_toggle_disable "${prefix}_disable; alias ${prefix}_toggle ${prefix}_toggle_enable"`,
