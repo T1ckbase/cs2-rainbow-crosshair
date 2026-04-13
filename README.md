@@ -72,4 +72,4 @@ rainbow_crosshair_on
 
 <br/>
 
-![cs2-rainbow-crosshair](https://github.com/T1ckbase/cs2-rainbow-crosshair/assets/146760065/6a01bc8a-d4c8-48ad-b6ed-f93c4a2c1b64)
+[Watch the CS2 rainbow crosshair preview](https://github.com/user-attachments/assets/0f0c74d4-9cc3-4000-8a3c-e960f30d1234)
