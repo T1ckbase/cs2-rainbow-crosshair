@@ -15,8 +15,9 @@
 
 ## 功能
 
-- **根據滑鼠移動變換顏色**
-- **多組配色**
+- **會隨著滑鼠移動改變準星顏色**
+- **可讓 HUD 顏色和準星同步變化**
+- **支援多種配色方案**
 - **可調整變色速度**
 
 ## 下載
@@ -30,55 +31,37 @@
 
 ## 使用方式
 
-1. 將 `t1ckbase_rainbow_crosshair` 資料夾放到: `Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg`
-2. 添加以下指令到你的 `autoexec.cfg`
+1. 將 `t1ckbase_rainbow_crosshair` 資料夾放到：`Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg`
+2. 把以下指令加入 `autoexec.cfg`
 
 ```
 exec t1ckbase_rainbow_crosshair/init
 
-// 載入配色
-rainbow_crosshair_load_oklch
-// rainbow_crosshair_load_hsl
+rainbow_crosshair_load_hsl
+// rainbow_crosshair_load_oklch
 
-// 設定速度 (1 ~ 30)
 rainbow_crosshair_speed_10
 
-rainbow_crosshair_enable
-// rainbow_crosshair_disable
+// rainbow_crosshair_hud_sync_on
+rainbow_crosshair_hud_sync_off
+
+rainbow_crosshair_on
+// rainbow_crosshair_off
 // rainbow_crosshair_toggle
 ```
 
 ## 指令別名
 
-- 啟用彩虹準星
-
-```
-rainbow_crosshair_enable
-```
-
-- 關閉彩虹準星
-
-```
-rainbow_crosshair_disable
-```
-
-- 切換彩虹準星開關
-
-```
-rainbow_crosshair_toggle
-```
-
-- 載入配色 (`oklch`, `hsl`)
-
-```
-rainbow_crosshair_load_oklch
-```
-
-- 調整變色速度 `1 ~ 30`
-
-```
-rainbow_crosshair_speed_10
-```
+| 指令                                                        | 說明                              |
+| ----------------------------------------------------------- | --------------------------------- |
+| `rainbow_crosshair_on`                                      | 開啟彩虹準星。                    |
+| `rainbow_crosshair_off`                                     | 關閉彩虹準星。                    |
+| `rainbow_crosshair_toggle`                                  | 切換彩虹準星的開關狀態。          |
+| `rainbow_crosshair_hud_sync_on`                             | 讓 HUD 顏色跟著準星顏色同步變化。 |
+| `rainbow_crosshair_hud_sync_off`                            | 停止同步 HUD 顏色。               |
+| `rainbow_crosshair_load_hsl`                                | 載入 `hsl` 配色。                 |
+| `rainbow_crosshair_load_oklch`                              | 載入 `oklch` 配色。               |
+| `rainbow_crosshair_speed_1` 到 `rainbow_crosshair_speed_30` | 設定變色速度。                    |
 
 ## 配色預覽
 

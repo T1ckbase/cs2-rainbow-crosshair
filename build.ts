@@ -202,23 +202,21 @@ async function build(config: Config) {
 
   await Bun.write(path.join(config.outDir, 'speed.cfg'), speedLines.join('\n'));
 
-  // 4. Generate enable.cfg
-  console.log('  - Generating enable.cfg');
-  const enableContent = [
+  // 4. Generate on.cfg
+  console.log('  - Generating on.cfg');
+  const onContent = [
     `bind mouse_x "${NS}; yaw"`,
     `bind mouse_y "${NS}; pitch"`,
     'cl_crosshaircolor 5', // Custom color mode
     '',
-    'echoln "[RainbowCrosshair] Enabled"',
+    'echoln "[RainbowCrosshair] On"',
   ].join('\n');
-  await Bun.write(path.join(config.outDir, 'enable.cfg'), enableContent);
+  await Bun.write(path.join(config.outDir, 'on.cfg'), onContent);
 
-  // 5. Generate disable.cfg
-  console.log('  - Generating disable.cfg');
-  const disableContent = ['bind mouse_x yaw', 'bind mouse_y pitch', '', `echoln "[RainbowCrosshair] Disabled"`].join(
-    '\n',
-  );
-  await Bun.write(path.join(config.outDir, 'disable.cfg'), disableContent);
+  // 5. Generate off.cfg
+  console.log('  - Generating off.cfg');
+  const offContent = ['bind mouse_x yaw', 'bind mouse_y pitch', '', `echoln "[RainbowCrosshair] Off"`].join('\n');
+  await Bun.write(path.join(config.outDir, 'off.cfg'), offContent);
 
   // 6. Generate init.cfg
   console.log('  - Generating init.cfg');
@@ -235,19 +233,19 @@ async function build(config: Config) {
     `alias ${HS} ${NOOP}`,
     '',
     '// Toggle Logic',
-    `alias ${prefix}_enable "exec ${outBase}/enable; alias ${prefix}_toggle ${prefix}_toggle_disable"`,
-    `alias ${prefix}_disable "exec ${outBase}/disable; alias ${prefix}_toggle ${prefix}_toggle_enable"`,
+    `alias ${prefix}_on "exec ${outBase}/on; alias ${prefix}_toggle ${prefix}_toggle_off"`,
+    `alias ${prefix}_off "exec ${outBase}/off; alias ${prefix}_toggle ${prefix}_toggle_on"`,
     '',
     '// HUD Sync',
     `alias ${prefix}_hud_sync_on "alias ${HS} ${HC}; echoln [RainbowCrosshair] HUD sync enabled"`,
     `alias ${prefix}_hud_sync_off "alias ${HS} ${NOOP}; echoln [RainbowCrosshair] HUD sync disabled"`,
     '',
-    `alias ${prefix}_toggle_enable "${prefix}_enable; alias ${prefix}_toggle ${prefix}_toggle_disable"`,
-    `alias ${prefix}_toggle_disable "${prefix}_disable; alias ${prefix}_toggle ${prefix}_toggle_enable"`,
-    `alias ${prefix}_toggle "${prefix}_toggle_enable"`,
+    `alias ${prefix}_toggle_on "${prefix}_on; alias ${prefix}_toggle ${prefix}_toggle_off"`,
+    `alias ${prefix}_toggle_off "${prefix}_off; alias ${prefix}_toggle ${prefix}_toggle_on"`,
+    `alias ${prefix}_toggle "${prefix}_toggle_on"`,
     '',
     '// Defaults',
-    `${prefix}_load_oklch`,
+    `${prefix}_load_hsl`,
     `${prefix}_speed_10`,
     '',
     `echoln "[RainbowCrosshair] Initialized (${version})"`,
