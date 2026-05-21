@@ -1,5 +1,5 @@
 {
-  "$schema": "http://www.schemastore.org/package.json",
+  "$schema": "https://www.schemastore.org/package.json",
   "name": "cs2-rainbow-crosshair",
   "module": "index.ts",
   "type": "module",
