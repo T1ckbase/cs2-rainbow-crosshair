@@ -1,17 +1,15 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
   "name": "cs2-rainbow-crosshair",
-  "module": "index.ts",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
-    "lint": "tsc --noEmit && biome check",
-    "lint:fix": "tsc --noEmit && biome check --write",
+    "format": "oxfmt",
     "build": "bun run build.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.11",
     "@types/bun": "latest",
-    "typescript": "^5.9.3"
+    "oxfmt": "^0.70.0",
+    "typescript": "^7.0.2"
   }
 }

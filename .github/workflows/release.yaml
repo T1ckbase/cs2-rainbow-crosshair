@@ -3,24 +3,23 @@ name: Release
 on:
   push:
     tags:
-      - "v*"
-
-permissions:
-  contents: write
+      - 'v*'
 
 jobs:
-  build-and-release:
+  release:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v7
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.4.x
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -35,4 +34,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           TAG_NAME: ${{ github.ref_name }}
-        run: gh release create "$TAG_NAME" --draft --generate-notes --verify-tag cfg.zip
+        run: gh release create "$TAG_NAME" --generate-notes --verify-tag cfg.zip

@@ -18,21 +18,13 @@
 - **Changes the crosshair color based on mouse movement**
 - **Can sync the HUD color with the crosshair**
 - **Supports multiple color palettes**
-- **Allows adjustable speed**
-
-## Download
-
-<a href="https://github.com/T1ckbase/cs2-rainbow-crosshair/releases/latest/download/cfg.zip">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/download-button-dark.svg">
-    <img src="./assets/download-button-light.svg" alt="Download" width="108" height="32">
-  </picture>
-</a>
+- **Supports adjustable speed**
 
 ## Usage
 
-1. Place the `t1ckbase_rainbow_crosshair` folder in: `Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg`
-2. Add the following commands to your `autoexec.cfg`
+1. Download the latest [`cfg.zip`](https://github.com/T1ckbase/cs2-rainbow-crosshair/releases/latest/download/cfg.zip) from [Releases](https://github.com/T1ckbase/cs2-rainbow-crosshair/releases/latest) and extract it.
+2. Place the `t1ckbase_rainbow_crosshair` folder in: `Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg`.
+3. Add the following commands to your `autoexec.cfg`.
 
 ```
 exec t1ckbase_rainbow_crosshair/init
@@ -63,7 +55,7 @@ rainbow_crosshair_on
 | `rainbow_crosshair_load_oklch`                              | Load the `oklch` palette.                    |
 | `rainbow_crosshair_speed_1` to `rainbow_crosshair_speed_30` | Set the color change speed.                  |
 
-## Color palettes preview
+## Color palette preview
 
 <div>
   <img src="./assets/oklch.svg" width="90px" height="90px" alt="oklch">
